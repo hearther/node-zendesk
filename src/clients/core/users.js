@@ -403,6 +403,18 @@ class Users extends Client {
   }
 
   /**
+   * @description Searches user based on external ID.
+   * @param {number} externalID - Search by externalID.
+   * @returns {Promise<object[]>} List of users matching the search.
+   * @async
+   * @see {@link https://developer.zendesk.com/api-reference/ticketing/organizations/organizations/#search-organizations-by-external-id}
+   * @example const users = await client.users.searchByExternalID(1234);
+   */
+  async searchByExternalID(externalID) {
+    return this.getAll(['users', 'search', {external_id: externalID}]);
+  }
+
+  /**
    * Retrieves details of the currently authenticated user.
    * @returns {Promise<{result: User}>} The user's details.The authenticated user's details.
    * @async
